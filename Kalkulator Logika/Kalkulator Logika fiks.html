@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Logika | Logika Matematika</title>
+    <link rel="icon" type="image/png" href="Asset/Logo.png">
+
+    <style>
+        body {
+            font-family: Verdana, sans-serif, Tahoma, sans-serif;
+            background: #FFEAC5;
+            color: #4e4742;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            padding: 20px;
+            gap: 25px;
+            background: #603F26;
+            border-radius: 25px;
+            box-shadow: 0 0 25px rgb(85, 84, 84);
+            margin: auto;
+        }
+
+        .premis, .operasi {
+            width: 100%;
+        }
+
+        .premis label, .operasi label {
+            display: block;
+            color: #FFDBB5;
+            margin: 10px 0 5px;
+        }
+
+        .premis select, .operasi select, .operasi button {
+            width: 100%;
+            padding: 10px;
+            background-color: #FFDBB5;
+            color: black;
+            border: 3px solid black; 
+            border-radius: 25px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .premis option, .operasi button {
+            background-color: #bd7120;
+        }
+
+        .premis option:hover, .operasi button:hover {
+            background-color: #ffaf59;
+        }
+
+        .operasi button {
+            height: 50px;
+            margin-top: 25px;
+            text-decoration: double;
+        }
+
+        .result {
+            width: 100%;
+            max-width: 200px;
+            text-align: center;
+            background-color: #FFDBB5;
+            color: black;
+            border: 3px solid black; 
+            border-radius: 25px;
+            padding: 5%;
+            margin: auto;
+            box-shadow: 0 0 25px rgb(85, 84, 84);
+            margin-top: 30px; /* Tambahan jarak dari atas */
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff0000; /* Warna teks hasil */
+        }
+
+        /* Media Queries */
+        @media (min-width: 600px) {
+            .container {
+                flex-direction: row;
+            }
+            .premis, .operasi {
+                width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Kalkulator Logika Matematika Kelompok 7</h1>
+
+    <div class="container">
+        <div class="premis">
+            <label for="operand1">Premis 1:</label>
+            <select id="operand1">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        
+            <label for="operand2" id="labelOperand2">Premis 2:</label>
+            <select id="operand2">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+        <div class="operasi">
+            <label for="operation">Operasi:</label>
+            <select id="operation">
+                <option value="AND">AND (∧)</option>
+                <option value="OR">OR (∨)</option>
+                <option value="NOT">NOT (¬)</option>
+                <option value="IMPLIKASI">IMPLIKASI (→)</option>
+                <option value="BIIMPLIKASI">BIIMPLIKASI (↔)</option>
+                <option value="EXCLUSIVE OR">EXCLUSIVE OR (⊕)</option>
+            </select>
+            <button onclick="hitung()">Hitung</button>
+        </div>
+    </div>
+
+    <div class="result">
+        <h2>Hasil: </h2>
+        <span id="result">-</span>
+    </div>
+
+    <script>
+        function hitung() {
+            const operand1 = document.getElementById('operand1').value;
+            const operand2 = document.getElementById('operand2').value;
+            const operation = document.getElementById('operation').value;
+
+            let result;
+
+            if (operation === 'AND') {
+                result = (operand1 === 'true' && operand2 === 'true') ? 'True' : 'False';
+            } else if (operation === 'OR') {
+                result = (operand1 === 'true' || operand2 === 'true') ? 'True' : 'False';
+            } else if (operation === 'NOT') {
+                result = (operand1 === 'true') ? 'False' : 'True';
+            } else if (operation === 'IMPLIKASI') {
+                result = (operand1 === 'true' && operand2 === 'false') ? 'False' : 'True';
+            } else if (operation === 'BIIMPLIKASI') {
+                result = (operand1 === operand2) ? 'True' : 'False';
+            } else if (operation === 'EXCLUSIVE OR') {
+                result = (operand1 !== operand2) ? 'True' : 'False';
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+
+        document.getElementById('operation').addEventListener('change', function() {
+            const operand2 = document.getElementById('operand2');
+            const labelOperand2 = document.getElementById('labelOperand2');
+
+            if (this.value === 'NOT') {
+                operand2.style.display = 'none';
+                labelOperand2.style.display = 'none';
+            } else {
+                operand2.style.display = 'block';
+                labelOperand2.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
