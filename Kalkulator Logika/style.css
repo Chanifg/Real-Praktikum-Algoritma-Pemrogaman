@@ -1,81 +1,70 @@
-body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background: #FFEAC5;
-    color: #603F26;
-    padding: 20px; /* Mengurangi padding untuk perangkat kecil */
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.container {
+ body { 
+    font-family: Segoe UI ;
+    background-color: #78B3CE;
     display: flex;
-    flex-direction: column; /* Mengubah menjadi kolom untuk perangkat kecil */
-    max-width: 900px;
-    padding: 20px; /* Mengurangi padding untuk perangkat kecil */
-    gap: 25px;
-    background: #603F26;
-    border: black;
-    border-radius: 25px;
-    box-shadow: 0 0 25px rgb(255, 255, 255);
-    margin: auto; /* Centering the container */
-}
+    justify-content: right;
+    align-items: center;
+    min-height: 100vh;
+    padding: 30px;
+ }
 
-.premis, .operasi {
-    width: 100%; /* Mengubah lebar menjadi 100% */
-}
+ .calculator {
+    background-color: #C9E6F0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: azure;
+    padding: 20px;
+ }
 
-.premis label, .operasi label {
-    display: block;
-    color: #FFDBB5;
-    margin: 10px 0 5px;
-}
-
-.premis select, .operasi select, .operasi button {
-    width: 100%; /* Mengubah lebar menjadi 100% */
+ input [type="text"] {
+    width: 300px;
     padding: 10px;
-    background-color: #FFDBB5;
-    color: black;
-    border: 3px solid black; 
-    border-radius: 25px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    border: none;
+    background-color: #444;
+    color: aliceblue;
+    text-align: right;
+ }
+
+ .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+ }
+
+ .button {
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    background-color: #FBF8EF;
+    border: none;
+    border-radius: 10px;
+    color: #000000;
     cursor: pointer;
-    text-align: center;
+    transition: background-color 0.3;
+ }
+
+ .button:hover {
+    background-color: #b9b9b9;
+ }
+
+ #delete {
+   background-color: #F96E2A;
+ }
+
+ #hasil {
+   background-color: #F96E2A;
+ }
+
+#display {
+   font-size: 24px;
+   border: 2px solid #FBF8EF;
+   background-color: #FBF8EF;
+   width: 96%;
+   height: 50px;
+   border-radius: 10px;
 }
 
-.premis option, .operasi button {
-    background-color: #FFDBB5;
-}
-
-.premis option:hover, .operasi button:hover {
-    background-color: #ffaf59;
-}
-
-.operasi button {
-    height: 50px;
-    margin-top: 25px;
-    text-decoration: double;
-}
-
-.result {
-    width: 100%; /* Mengubah lebar menjadi 100% */
-    max-width: 150px; /* Menjaga lebar maksimum */
-    text-align: center;
-    background-color: #FFDBB5;
-    color: black;
-    border: 3px solid black; 
-    border-radius: 25px;
-    padding: 5%;
-    margin: auto; /* Centering the result */
-}
-
-/* Media Queries */
-@media (min-width: 600px) {
-    .container {
-        flex-direction: row; /* Mengubah kembali menjadi baris untuk perangkat lebih besar */
-    }
-    .premis, .operasi {
-        width: 300px; /* Kembali ke lebar tetap untuk perangkat lebih besar */
-    }
-}
