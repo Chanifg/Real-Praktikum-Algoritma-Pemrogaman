@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="icon" type="image/png" href="Asset/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="Asset/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Asset/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="Asset/favicon-16x16.png">
+    <link rel="manifest" href="Asset/site.webmanifest">
+
+    <title>Kalkulator Logika</title>
+</head>
+<body>
+    <div class="container">
+        <img src="Asset/gambar.png" alt="judul">
+        <div class="calculator">
+            <input type="text" id="display" readonly>
+            <div class="nilai">
+                <button id="F" onclick="appendToDisplay('F')">F</button>
+                <button id="T" onclick="appendToDisplay('T')">T</button>
+            </div>
+            <div class="buttons">
+                <button class="button" onclick="appendToDisplay('↔')">↔</button>
+                <button class="button" onclick="appendToDisplay('→')">→</button>
+                <button class="button" onclick="appendToDisplay('∨')">∨</button>
+                <button class="button" onclick="appendToDisplay('∧')">∧</button>
+                <button class="button" onclick="appendToDisplay('(')">(</button>
+                <button class="button" onclick="appendToDisplay(')')">)</button>
+                <button class="button" onclick="appendToDisplay('¬')">¬</button>
+                <button class="button" onclick="appendToDisplay('⊕')">⊕</button>
+            </div>
+
+            <div class="command">
+                <button class="delete" id="delete" onclick="clearDisplay()">C</button>
+                <button class="hasil" id="hasil" onclick="calculateResult()">=</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

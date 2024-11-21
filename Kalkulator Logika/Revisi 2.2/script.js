@@ -21,28 +21,29 @@ function clearDisplay() {
 // Fungsi untuk mengevaluasi ekspresi logika
 function calculateResult() {
     try {
-        // Deklarasikan nilai logika untuk variabel
-        const variables = {
-            P: true,
-            Q: true,
-            R: true,
-            S: true,
-            T: true,
-            U: true
-        };
-
         // Ganti simbol logika dengan operator JavaScript
         let expression = display.value
-            .replace(/∧/g, '&&')   // AND
-            .replace(/∨/g, '||')   // OR
-            .replace(/¬/g, '!')    // NOT
-            .replace(/⊕/g, '^')    // XOR
-            .replace(/↔/g, '==='); // IFF
+            .replace(/T/g, 'true')    // Ubah T menjadi true
+            .replace(/F/g, 'false')   // Ubah F menjadi false
+            .replace(/∧/g, '&&')      // AND
+            .replace(/∨/g, '||')      // OR
+            .replace(/¬/g, '!')       // NOT
+            .replace(/⊕/g, '^')       // XOR (ditangani di bawah)
+            .replace(/↔/g, '===');    // IFF (equivalence)
 
-        // Ganti variabel logika dengan nilai boolean
-        for (const [key, value] of Object.entries(variables)) {
-            expression = expression.replace(new RegExp(key, 'g'), value);
+        // Tangani simbol implikasi (→)
+        while (expression.includes('→')) {
+            expression = expression.replace(
+                /([a-zA-Z()!]+)\s*→\s*([a-zA-Z()!]+)/,
+                '!($1) || ($2)'
+            );
         }
+
+        // Tangani XOR (karena JavaScript tidak memiliki operator langsung untuk XOR)
+        expression = expression.replace(/true \^ true/g, 'false')
+            .replace(/true \^ false/g, 'true')
+            .replace(/false \^ true/g, 'true')
+            .replace(/false \^ false/g, 'false');
 
         // Evaluasi ekspresi logika
         const result = eval(expression);
@@ -52,7 +53,7 @@ function calculateResult() {
         isResultDisplayed = true; // Tandai bahwa hasil telah ditampilkan
     } catch (error) {
         // Tampilkan pesan kesalahan jika ada
-        display.value = 'Hello, world!';
+        display.value = 'Error!';
         isResultDisplayed = true; // Tandai bahwa hasil telah ditampilkan
     }
 }
